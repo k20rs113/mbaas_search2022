@@ -13,7 +13,7 @@
         // NCMB アクセスの準備
         let ncmb = new NCMB(appKey, clientKey);
         // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
-        const db = "s1";
+        const db = "s3";
 
         function fetchAll() {
             let TestDataClass = ncmb.DataStore(db);
@@ -32,10 +32,10 @@
                 })
         }
 
-        function searchWeaponType() {
+        function searchType() {
             let TestDataClass = ncmb.DataStore(db);
-            let weaponType = $("#weaponType").val();
-            TestDataClass.equalTo("weaponType", weaponType).fetchAll()
+            let type = $("#type").val();
+            TestDataClass.equalTo("type", type).fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
@@ -61,12 +61,12 @@
 
         function showResults(results) {
             // テーブルのヘッダを生成
-            let msg = "<table><tr><th>name</th><th>weaponType</th><th>attack</th><th>range</th></tr>";
+            let msg = "<table><tr><th>name</th><th>type</th><th>attack</th><th>range</th></tr>";
             for (let i = 0; i < results.length; i++) {
                 // 各データを収めた表の列を生成
                 msg += "<tr>";
                 msg += "<td>" + results[i].name + "</td>";
-                msg += "<td>" + results[i].weaponType + "</td>";
+                msg += "<td>" + results[i].type + "</td>";
                 msg += "<td class='num'>" + results[i].attack + "</td>";
                 msg += "<td class='num'>" + results[i].range + "</td>";
                 msg += "</tr>";
@@ -85,8 +85,8 @@
         <input id="name" type="text" placeholder="splatoon3 name">
     </div>
     <div>
-        <label for="weaponType">weaponType:</label>
-        <input id="weaponType" type="text" placeholder="splatoon3 weaponType">
+        <label for="type">type:</label>
+        <input id="type" type="text" placeholder="splatoon3 type">
     </div>
     <div>
         <label for="attack">attack:</label>
@@ -99,7 +99,7 @@
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
-        <button class="btn" onclick="searchWeaponType()">weaponType</button>
+        <button class="btn" onclick="searchType()">type</button>
         <button class="btn" onclick="searchAttack()">Attack</button>
         <button class="btn" onclick="searchRange()">range</button>
         <br>
