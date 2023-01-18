@@ -32,6 +32,15 @@
                 })
         }
 
+        function searchWeaponType() {
+            let TestDataClass = ncmb.DataStore(db);
+            let weaponType = $("#weaponType").val();
+            TestDataClass.equalTo("weaponType", weaponType).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function searchAttack() {
             let TestDataClass = ncmb.DataStore(db);
             let attack = parseInt($("#attack").val());
@@ -76,6 +85,10 @@
         <input id="name" type="text" placeholder="splatoon3 name">
     </div>
     <div>
+        <label for="weaponType">weaponType:</label>
+        <input id="weaponType" type="text" placeholder="splatoon3 weaponType">
+    </div>
+    <div>
         <label for="attack">attack:</label>
         <input id="attack" type="number" placeholder="splatoon3 attack">
     </div>
@@ -86,6 +99,7 @@
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
+        <button class="btn" onclick="searchWeaponType()">weaponType</button>
         <button class="btn" onclick="searchAttack()">Attack</button>
         <button class="btn" onclick="searchRange()">range</button>
         <br>
