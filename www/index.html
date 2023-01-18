@@ -13,7 +13,7 @@
         // NCMB アクセスの準備
         let ncmb = new NCMB(appKey, clientKey);
         // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
-        const db = "s3";
+        const db = "s4";
 
         function fetchAll() {
             let TestDataClass = ncmb.DataStore(db);
@@ -36,6 +36,15 @@
             let TestDataClass = ncmb.DataStore(db);
             let type = $("#type").val();
             TestDataClass.equalTo("type", type).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
+        function searchAttackLT() {
+            let TestDataClass = ncmb.DataStore(db);
+            let attack = parseInt($("#attack").val());
+            TestDataClass.lessThanOrEqualTo("attack", attack).fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
@@ -100,9 +109,11 @@
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
         <button class="btn" onclick="searchType()">type</button>
-        <button class="btn" onclick="searchAttack()">Attack</button>
-        <button class="btn" onclick="searchRange()">range</button>
         <br>
+        <button class="btn" onclick="searchAttackLT()">attack &lt</button>
+        <button class="btn" onclick="searchAttack()">Attack</button>
+        <br>
+        <button class="btn" onclick="searchRange()">range</button>
     </div>
     <div id="message">message area</div>
 </body>
