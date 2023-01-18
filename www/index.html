@@ -86,6 +86,15 @@
                 })
         }
 
+        function searchRangeGT() {
+            let TestDataClass = ncmb.DataStore(db);
+            let range = parseInt($("#range").val());
+            TestDataClass.greaterThanOrEqualTo ("range", range).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function showResults(results) {
             // テーブルのヘッダを生成
             let msg = "<table><tr><th>name</th><th>type</th><th>attack</th><th>range</th></tr>";
@@ -134,6 +143,7 @@
         <br>
         <button class="btn" onclick="searchRangeLT()">range &lt=</button>
         <button class="btn" onclick="searchRange()">range</button>
+        <button class="btn" onclick="searchRangeGT()">range &gt=</button>
     </div>
     <div id="message">message area</div>
 </body>
