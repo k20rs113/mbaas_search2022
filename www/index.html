@@ -59,6 +59,15 @@
                 })
         }
 
+        function searchRangeLT() {
+            let TestDataClass = ncmb.DataStore(db);
+            let range = parseInt($("#range").val());
+            TestDataClass.lessThanOrEqualTo("range", range).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function searchRange() {
             let TestDataClass = ncmb.DataStore(db);
             let range = parseInt($("#range").val());
@@ -110,9 +119,10 @@
         <button class="btn" onclick="searchName()">Name</button>
         <button class="btn" onclick="searchType()">type</button>
         <br>
-        <button class="btn" onclick="searchAttackLT()">attack &lt</button>
+        <button class="btn" onclick="searchAttackLT()">attack &lt=</button>
         <button class="btn" onclick="searchAttack()">Attack</button>
         <br>
+        <button class="btn" onclick="searchRangeLT()">range &lt=</button>
         <button class="btn" onclick="searchRange()">range</button>
     </div>
     <div id="message">message area</div>
