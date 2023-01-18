@@ -32,6 +32,24 @@
                 })
         }
 
+        // function searchAttack() {
+        //     let TestDataClass = ncmb.DataStore(db);
+        //     let attack = parseInt$("#attack").val();
+        //     TestDataClass.equalTo("attack", attack).fetchAll()
+        //         .then(function(results) {
+        //             showResults(results);
+        //         })
+        // }
+
+        function searchAttack() {
+            let TestDataClass = ncmb.DataStore(db);
+            let attack = parseInt($("#attack").val());
+            TestDataClass.equalTo("attack", attack).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function showResults(results) {
             // テーブルのヘッダを生成
             let msg = "<table><tr><th>name</th><th>Lvl</th><th>attack</th><th>defence</th></tr>";
@@ -59,11 +77,12 @@
     </div>
     <div>
         <label for="attack">attack:</label>
-        <input id="level" type="number" placeholder="splatoon attack">
+        <input id="attack" type="number" placeholder="splatoon attack">
     </div>
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
+        <button class="btn" onclick="searchAttack()">Attack</button>
         <br>
     </div>
     <div id="message">message area</div>
