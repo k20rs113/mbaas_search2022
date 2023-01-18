@@ -59,6 +59,15 @@
                 })
         }
 
+        function searchAttackGT() {
+            let TestDataClass = ncmb.DataStore(db);
+            let attack = parseInt($("#attack").val());
+            TestDataClass.greaterThanOrEqualTo("attack", attack).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function searchRangeLT() {
             let TestDataClass = ncmb.DataStore(db);
             let range = parseInt($("#range").val());
@@ -121,6 +130,7 @@
         <br>
         <button class="btn" onclick="searchAttackLT()">attack &lt=</button>
         <button class="btn" onclick="searchAttack()">Attack</button>
+        <button class="btn" onclick="searchAttackGT()">attack &gt=</button>
         <br>
         <button class="btn" onclick="searchRangeLT()">range &lt=</button>
         <button class="btn" onclick="searchRange()">range</button>
